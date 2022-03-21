@@ -24,26 +24,7 @@ class Program
             switch (userInput)
             {
                 case "a":
-                    string name = "";
-                    int age = 0;
-                    while (name == "")
-                    {
-                        Console.WriteLine("Enter student Name:");
-                        name = Console.ReadLine().Trim();
-                        if (name == "") Console.WriteLine("Name field have to include at least 1 char, Please try again.");
-                    }
-
-                    while (age == 0)
-                    {
-                        Console.WriteLine("Enter student Age:");
-                        try
-                        {
-                            age = int.Parse(Console.ReadLine());
-                        }
-                        catch (Exception ex)
-                        { Console.WriteLine("Age field accepts only digits, please try again."); }
-                    }
-                    AddStudent(new Student(name, age));
+                    AddStudent();
                     break;
                 case "r":
                     Console.WriteLine("Enter student's name to remove:");
@@ -64,8 +45,31 @@ class Program
             }
         }
     }
-    public static void AddStudent(Student addStudent)
+    public static void AddStudent()
     {
+        string name = "";
+        int age = 0;
+        // Input
+        while (name == "")
+        {
+            Console.WriteLine("Enter student Name:");
+            name = Console.ReadLine().Trim();
+            if (name == "") Console.WriteLine("Name field have to include at least 1 char, Please try again.");
+        }
+
+        while (age == 0)
+        {
+            Console.WriteLine("Enter student Age:");
+            try
+            {
+                age = int.Parse(Console.ReadLine());
+            }
+            catch (Exception ex)
+            { Console.WriteLine("Age field accepts only digits, please try again."); }
+        }
+        Student addStudent = new Student(name, age);
+
+        // Add process
         List<Student> students = Deserialize();
         foreach (Student student in students)
         {
