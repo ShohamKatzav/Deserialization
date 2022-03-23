@@ -6,10 +6,12 @@ class Program
 {
     public const string FILEPATH = "students.json";
     public const int TUITUIONFEE = 10000;
+    private static List<Student> students;
     public static void Main()
     {
         bool endProgram = false;
         string userInput = "";
+        students = Deserialize();
 
         while (!endProgram)
         {
@@ -70,7 +72,6 @@ class Program
         Student addStudent = new Student(name, age);
 
         // Add process
-        List<Student> students = Deserialize();
         foreach (Student student in students)
         {
             if (addStudent.Name.ToLower().Trim() == student.Name.ToLower())
@@ -87,7 +88,6 @@ class Program
     public static void RemoveStudent(string studentName)
     {
         bool removed = false;
-        List<Student> students = Deserialize();
         foreach (Student student in students)
         {
             if (student.Name.ToLower().Trim() == studentName.ToLower())
@@ -105,14 +105,12 @@ class Program
     }
     public static void PrintStudents()
     {
-        List<Student> students = Deserialize();
         for (int i = 0; i < students.Count; i++)
             Console.WriteLine($"Student Number [{i + 1}] : {students[i]}");
     }
 
     public static void PrintStudentsTuitionFeeReport()
     {
-        List<Student> students = Deserialize();
         var checkAge = (int age) => { if (age >= 25) return (TUITUIONFEE.ToString()); else return ((TUITUIONFEE / 10 * 9).ToString()); };
         for (int i = 0; i < students.Count; i++)
         {
