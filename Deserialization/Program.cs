@@ -6,7 +6,9 @@ class Program
 {
     public const string FILEPATH = "students.json";
     public const int TUITUIONFEE = 10000;
+    public const int LIMITAGEFORSCHOLARSHIP = 25;
     private static List<Student> students;
+    
     public static void Main()
     {
         bool endProgram = false;
@@ -111,10 +113,10 @@ class Program
 
     public static void PrintStudentsTuitionFeeReport()
     {
-        var checkAge = (int age) => { if (age >= 25) return (TUITUIONFEE.ToString()); else return ((TUITUIONFEE / 10 * 9).ToString()); };
+        var getTuituionFeeAcordingToAge = (int age) => { if (age >= LIMITAGEFORSCHOLARSHIP) return (TUITUIONFEE); else return ((TUITUIONFEE / 10 * 9)); };  
         for (int i = 0; i < students.Count; i++)
         {
-            Console.WriteLine($"{students[i]} need to pay {checkAge(students[i].Age)}");
+            Console.WriteLine($"{students[i]} need to pay {getTuituionFeeAcordingToAge(students[i].Age)}");
         }
     }
     public static List<Student> Deserialize()

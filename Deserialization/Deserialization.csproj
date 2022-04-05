@@ -8,7 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="bin\Debug\net6.0\students.json" />
+    <None Include="bin\Debug\net6.0\students.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
